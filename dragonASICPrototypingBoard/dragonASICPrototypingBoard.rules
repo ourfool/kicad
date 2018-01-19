@@ -1,0 +1,82 @@
+
+(rules PCB dragonASICPrototypingBoard
+  (snap_angle 
+    fortyfive_degree
+  )
+  (autoroute_settings
+    (fanout off)
+    (autoroute on)
+    (postroute on)
+    (vias on)
+    (via_costs 50)
+    (plane_via_costs 5)
+    (start_ripup_costs 100)
+    (start_pass_no 697)
+    (layer_rule F.Cu
+      (active on)
+      (preferred_direction horizontal)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 2.3)
+    )
+    (layer_rule B.Cu
+      (active on)
+      (preferred_direction vertical)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 1.8)
+    )
+  )
+  (rule
+    (width 250.0)
+    (clear 200.2)
+    (clear 125.0 (type smd_to_turn_gap))
+    (clear 50.0 (type smd_smd))
+  )
+  (padstack "Via[0-1]_800:400_um"
+    (shape
+      (circle F.Cu 800.0 0.0 0.0)
+    )
+    (shape
+      (circle B.Cu 800.0 0.0 0.0)
+    )
+    (attach off)
+  )
+  (via 
+    "Via[0-1]_800:400_um" "Via[0-1]_800:400_um" default
+  )
+  (via 
+    "Via[0-1]_800:400_um-kicad_default" "Via[0-1]_800:400_um" "kicad_default"
+  )
+  (via_rule
+    default "Via[0-1]_800:400_um"
+  )
+  (via_rule
+    "kicad_default" "Via[0-1]_800:400_um-kicad_default"
+  )
+  (class default
+    (clearance_class default)
+    (via_rule default)
+    (rule
+      (width 250.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class "kicad_default"
+    /GPIO0 /GPIO1 /GPIO2 /GPIO3 /GPIO4 /GPIO5 /GPIO6 /GPIO7
+    /CLK /CLKSEL /RESET /VDD /GND /ROMADDR[12] /ROMADDR[11] /ROMADDR[10]
+    /ROMADDR[9] /ROMADDR[8] /ROMADDR[7] /ROMADDR[6] /ROMADDR[5] /ROMADDR[4] /ROMADDR[3] /ROMADDR[2]
+    /ROMADDR[1] /ROMADDR[0] /ROMDATA[14] /ROMDATA[13] /ROMDATA[12] /ROMDATA[11] /ROMDATA[10] /ROMDATA[9]
+    /ROMDATA[8] /ROMDATA[7] /ROMDATA[6] /ROMDATA[5] /ROMDATA[4] /ROMDATA[3] /ROMDATA[2] /ROMDATA[1]
+    /ROMDATA[0] /SPICLK0 /MOSI0 /MISO0 /CS0 /SPICLK1 /MOSI1 /MISO1
+    /CS1 "Net-(U1-Pad42)" /VCOMON
+    (clearance_class "kicad_default")
+    (via_rule kicad_default)
+    (rule
+      (width 250.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+)
